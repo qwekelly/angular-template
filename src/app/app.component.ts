@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.subscribe(event => {
-      console.log(event);
       if (event instanceof NavigationStart) {
         this.loadingService.start();
         return;

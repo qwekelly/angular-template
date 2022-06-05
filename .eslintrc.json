@@ -39,7 +39,29 @@
             "style": "kebab-case"
           }
         ],
-        "@angular-eslint/no-empty-lifecycle-method": "off"
+        "@angular-eslint/no-empty-lifecycle-method": "off",
+        "@angular-eslint/no-input-rename": "off",
+        "@angular-eslint/no-output-native": "off",
+        "@angular-eslint/template/no-negated-async": "off",
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "off",
+          {
+            "accessibility": "explicit"
+          }
+        ],
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/member-ordering": "off",
+        "@typescript-eslint/prefer-for-of": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "no-shadow": "off",
+        "guard-for-in": "off",
+        "id-blacklist": "off",
+        "id-match": "off",
+        "import/order": "off",
+        "no-bitwise": "off",
+        "no-underscore-dangle": "off"
       }
     },
     {

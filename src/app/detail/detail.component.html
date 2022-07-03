@@ -10,6 +10,7 @@
       <div class="hide_long" [title]="fileName">{{ fileName }}</div>
     </a>
   </mat-nav-list>
+  <button mat-raised-button class="download-btn" (click)="onDownload()">下载当前文档</button>
 </div>
 
 <div class="content" #box>

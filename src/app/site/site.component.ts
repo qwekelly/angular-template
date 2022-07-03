@@ -14,13 +14,4 @@ export class SiteComponent implements OnInit {
 
   ngOnInit() {}
 
-  readFile() {
-    // look: 
-    // https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
-    // https://web.dev/file-system-access/
-    // https://marked.js.org/
-
-    // const dd = await window?.showOpenFilePicker();
-    this.router.navigateByUrl(`/detail?fileName=内联元素`)
-  }
 }

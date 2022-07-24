@@ -1,0 +1,42 @@
+<mat-card class="article">
+  <mat-card-title class="article-title">IndexDB 介绍与使用</mat-card-title>
+
+  <section class="article-section">
+    <h3 class="article-section-title">概述</h3>
+    <p class="article-section-content">
+      IndexedDB 是一种底层 API，用于在客户端存储大量的结构化数据。使用索引实现对数据的高性能搜索，是一个事务型数据库系统。
+    </p>
+  </section>
+  
+  <section class="article-section">
+    <h3 class="article-section-title">注意特点</h3>
+    <p class="article-section-content">
+      1、遵循同源策略：
+          因此当你在某个域名下操作储存数据的时候，你不能操作其他域名下的数据。<br>
+      2、同步＆异步：
+          目前同步API已从规范中移除，不太建议使用；现阶段使用IndexDB都是异步操作。<br>
+      3、最大存储空间：
+          不同浏览器给到IndexDB可操作的存储空间是不同的。一般来说不少于 250MB，全局限制为可用磁盘空间的 50％。超过就会触发源回收。<br>
+      4、键值对储存：
+          数据以"键值对"的形式保存，每一个数据记录都有对应的主键，主键是独一无二的。<br>
+      5、支持事务：
+          只要有一步失败，整个事务就都取消，数据库回滚到事务发生之前的状态，不存在只改写一部分数据的情况，操作数据更安全。
+    </p>
+  </section>
+  
+  
+  <section class="article-section">
+    <h3 class="article-section-title">待查阅问题</h3>
+    <p class="article-section-content">
+      1、250MB数据来源。
+    </p>
+  </section>
+  
+  <section class="article-section">
+    <h3 class="article-section-title">参考文档</h3>
+    <p class="article-section-content">
+      <a class="link" target="_blank">https://www.ruanyifeng.com/blog/2018/07/indexeddb.html</a>
+      <a class="link" target="_blank">https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API</a>
+    </p>
+  </section>
+</mat-card>

@@ -2,12 +2,13 @@
 
 :host {
   display: flex;
+  height: 100%;
 }
 
 .menu {
-  position: sticky;
-  top: 0;
   flex-shrink: 0;
+  overflow: auto;
+  padding-left: 16px;
 
   .list {
     padding-top: 0;
@@ -21,17 +22,28 @@
 }
 
 .content {
-  margin-left: 16px;
+  padding: 16px;
+  overflow: auto;
+  scroll-behavior: smooth;
+  flex: 1;
+  min-height: 100%;
+  box-sizing: border-box;
+
+  .mat-card {
+    min-height: 100%;
+  }
 }
 
 ::ng-deep {
   img {
     margin: 8px 0;
+    max-width: 100%;
   }
   pre code{
     display: block;
-    overflow-x: auto;
+    overflow: auto;
     padding: 1em;
+    white-space: pre-wrap;
     background-color: #f8f8f8;
     color: #333;
     border-radius: 6px;

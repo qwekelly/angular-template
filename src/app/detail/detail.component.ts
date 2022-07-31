@@ -12,7 +12,8 @@ import { BaseService } from 'app/services/base.service';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
-  @ViewChild('content') content!: ElementRef;
+  @ViewChild('box') box!: ElementRef<HTMLElement>;
+  @ViewChild('content') content!: ElementRef<HTMLElement>;
 
   activeName = '';
 
@@ -60,6 +61,7 @@ export class DetailComponent implements OnInit {
             return hljs.highlightAuto(code).value;
           }
         });
+        this.box.nativeElement.scrollTo(0, 0)
         this.loadingService.stop()
       })
     })

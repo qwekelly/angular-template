@@ -46,3 +46,7 @@ yarn-lock.json
 # System Files
 .DS_Store
 Thumbs.db
+
+# project
+yarn.lock
+package-lock.json

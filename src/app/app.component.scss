@@ -18,6 +18,8 @@
 }
 
 .app-content {
-  margin-top: 64px;
-  padding: 16px;
+  padding-top: 64px;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }

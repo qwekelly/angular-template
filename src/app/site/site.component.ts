@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-site',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SiteComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit() {}
 
@@ -17,5 +20,7 @@ export class SiteComponent implements OnInit {
     // https://web.dev/file-system-access/
     // https://marked.js.org/
 
+    // const dd = await window?.showOpenFilePicker();
+    this.router.navigateByUrl(`/detail?fileName=内联元素`)
   }
 }

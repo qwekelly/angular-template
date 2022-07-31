@@ -8,7 +8,8 @@
 .menu {
   flex-shrink: 0;
   overflow: auto;
-  padding-left: 16px;
+  padding: 16px 16px 52px;
+  position: relative;
 
   .list {
     padding-top: 0;
@@ -18,6 +19,11 @@
       background-color: rgba(63,81,181,.15);
       color: #3f51b5;
     }
+  }
+
+  .download-btn {
+    position: absolute;
+    right: 16px;
   }
 }
 
@@ -31,6 +37,8 @@
 
   .mat-card {
     min-height: 100%;
+    line-height: 24px;
+    font-size: 16px;
   }
 }
 

@@ -1,5 +1,4 @@
 <mat-card>
   <mat-card-title>CSS技术专栏</mat-card-title>
-  <button mat-button (click)="readFile()">读取本地文件</button>
-  <a mat-button href="../detail?fileName=test.md" target="_blank">Link</a>
+  <a mat-button [routerLink]="['detail']">开始学习</a>
 </mat-card>

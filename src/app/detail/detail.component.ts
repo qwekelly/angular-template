@@ -1,10 +1,14 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { marked } from 'marked';
 import hljs  from 'highlight.js';
 
 import { LoadingService } from 'app/services/loading.service';
 import { BaseService } from 'app/services/base.service';
+
+// https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
+// https://web.dev/file-system-access/
+// https://marked.js.org/
 
 @Component({
   selector: 'app-detail',
@@ -34,14 +38,19 @@ export class DetailComponent implements OnInit {
   ]
 
   constructor(
-    private router: ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     private baseService: BaseService,
     private loadingService: LoadingService,
   ) {
-    this.router.queryParams.subscribe(query => {
+    this.route.queryParams.subscribe(query => {
       this.activeName = query['fileName'] || this.fileNameList[0];
       this.loadingService.start()
       this.findAssetFileByName()
+
+      if (!query['fileName']) {
+        this.addQueryParamsToRouter()
+      }
     })
   }
 
@@ -65,5 +74,34 @@ export class DetailComponent implements OnInit {
         this.loadingService.stop()
       })
     })
+  }
+
+  addQueryParamsToRouter() {
+    this.router.navigate(['detail'], {
+      queryParams: {
+        fileName: this.activeName
+      }
+    })
+  }
+
+  async onDownload() {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: 'myTest',
+        types: [
+          {
+            description: 'Text file',
+            accept: {'text/plain': ['.txt']},
+          },
+        ],
+       });
+      const writable = await handle.createWritable();
+      await writable.write('你是谁');
+      await writable.close();
+      return handle;
+    } catch (err: any) {
+       console.error(err.name, err.message);
+       return
+    }
   }
 }

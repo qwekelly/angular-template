@@ -5,10 +5,12 @@ interface NodeModule {
 }
 
 interface Window {
-  showSaveFilePicker: (a: any) => {
-    createWritable: () => {
-      write: (b: any) => void;
-      close: () => void;
-    }
+  showSaveFilePicker (a: any) : FileSystemFileHandle
+}
+
+interface FileSystemFileHandle {
+  createWritable: () => {
+    write: (b: any) => void;
+    close: () => void;
   }
 }

@@ -6,6 +6,8 @@ import hljs  from 'highlight.js';
 import { LoadingService } from 'app/services/loading.service';
 import { BaseService } from 'app/services/base.service';
 
+import { SaveByFilePicker } from 'utils/file-download';
+
 // https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
 // https://web.dev/file-system-access/
 // https://marked.js.org/
@@ -84,24 +86,15 @@ export class DetailComponent implements OnInit {
     })
   }
 
-  async onDownload() {
-    try {
-      const handle = await window.showSaveFilePicker({
-        suggestedName: 'myTest',
-        types: [
-          {
-            description: 'Text file',
-            accept: {'text/plain': ['.txt']},
-          },
-        ],
-       });
-      const writable = await handle.createWritable();
-      await writable.write('你是谁');
-      await writable.close();
-      return handle;
-    } catch (err: any) {
-       console.error(err.name, err.message);
-       return
-    }
+  onDownload() {
+    this.loadingService.start();
+    this.baseService.getMarkDownFile(this.activeName).subscribe((content) => {
+      const accept = {
+        'text/plain': ['.md']
+      }
+      SaveByFilePicker(content, accept, this.activeName, () => {
+        this.loadingService.stop();
+      });
+    })
   }
 }

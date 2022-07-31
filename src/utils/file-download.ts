@@ -64,7 +64,7 @@ export function saveDataAs(content: any, type: string, filename: string, callbac
   callback && callback()
 }
 
-export async function SaveByFilePicker(content: any, accept: FileTypeAccept, filename: string, callback: () => any) {
+export async function SaveByFilePicker(content: any, accept: FileTypeAccept, filename: string, callback: (status) => any) {
   try {
     const handle = await window.showSaveFilePicker({
       suggestedName: filename,
@@ -77,11 +77,12 @@ export async function SaveByFilePicker(content: any, accept: FileTypeAccept, fil
     const writable = await handle.createWritable();
     await writable.write(content);
     await writable.close();
-    await callback && callback();
+    await callback && callback(true);
     return handle;
   } catch (err: any) {
      console.error(err.name, err.message);
-     return
+     await callback && callback(false);
+     return false;
   }
 }
 

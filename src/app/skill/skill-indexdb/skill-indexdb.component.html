@@ -31,12 +31,50 @@
       1、250MB数据来源。
     </p>
   </section>
+
+  <section class="article-section">
+    <h3 class="article-section-title">实现例子</h3>
+    <div class="table-container">
+      <div class="table-header">
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>搜索框</mat-label>
+          <input matInput (keyup)="applyFilter(input.value)" placeholder="Ex. ium" #input>
+        </mat-form-field> -->
+        <button mat-raised-button (click)="addData()" class="demo-button">
+          添加
+        </button>
+      </div>
+      <table mat-table [dataSource]="students" class="table-main">
+        <tr mat-header-row class="table-main-thead-tr" *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row class="table-main-tbody-tr" *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> 姓名 </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef> 年龄 </th>
+          <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fraction">
+          <th mat-header-cell *matHeaderCellDef> 分数 </th>
+          <td mat-cell *matCellDef="let element"> {{element.fraction}} </td>
+        </ng-container>
+      </table>
+    </div>
+  </section>
   
   <section class="article-section">
     <h3 class="article-section-title">参考文档</h3>
     <p class="article-section-content">
       <a class="link" target="_blank">https://www.ruanyifeng.com/blog/2018/07/indexeddb.html</a>
       <a class="link" target="_blank">https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API</a>
+      <a class="link" target="_blank">https://wangdoc.com/javascript/bom/indexeddb.html</a>
     </p>
   </section>
 </mat-card>
+

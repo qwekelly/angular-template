@@ -92,7 +92,7 @@ export class DetailComponent implements OnInit {
       const accept = {
         'text/plain': ['.md']
       }
-      SaveByFilePicker(content, accept, this.activeName, () => {
+      SaveByFilePicker(content, accept, this.activeName, (status) => {
         this.loadingService.stop();
       });
     })

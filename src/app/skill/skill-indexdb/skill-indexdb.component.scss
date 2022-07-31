@@ -8,3 +8,21 @@
 .link {
   display: block;
 }
+
+.table-container {
+
+  .table-header {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .table-main {
+    width: 100%;
+
+    .table-main-thead-tr {
+      background-color: #f5f5f5;
+    }
+  }
+}

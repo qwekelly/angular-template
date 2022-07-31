@@ -1,3 +1,17 @@
-<mat-card>
+<div class="menu">
+  <mat-nav-list class="list">
+    <a
+      mat-list-item
+      *ngFor="let fileName of fileNameList"
+      [routerLink]="['./']"
+      [queryParams]="{fileName}"
+      [class.active]="activeName === fileName"
+    >
+      <div class="hide_long" [title]="fileName">{{ fileName }}</div>
+    </a>
+  </mat-nav-list>
+</div>
+
+<mat-card class="content">
   <div #content></div>
 </mat-card>

@@ -8,6 +8,16 @@
   right: 0;
 }
 
+.app-header {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
 .app-content {
+  margin-top: 64px;
   padding: 16px;
 }

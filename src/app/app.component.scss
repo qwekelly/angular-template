@@ -1,8 +1,13 @@
+@import '../styles/index.scss';
 
 .progress-bar-container {
   z-index: 11;
   position: fixed;
-  top: 0;
+  top: 64;
   left: 0;
   right: 0;
+}
+
+.app-content {
+  padding: 16px;
 }

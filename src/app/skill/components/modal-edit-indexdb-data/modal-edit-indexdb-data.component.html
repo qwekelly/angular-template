@@ -1,21 +1,23 @@
-<div class="alert-title" mat-dialog-title>添加学生</div>
+<div class="alert-title" mat-dialog-title>
+  {{ editMode ? '编辑学生信息' : '添加学生' }}
+</div>
 
 <div class="alert-content" mat-dialog-content>
   <form class="form-content" [formGroup]="eduInfoForm">
     <mat-form-field appearance="outline" class="input-box">
       <mat-label>姓名</mat-label>
-      <input matInput placeholder="请输入" formControlName="name" required>
+      <input matInput placeholder="请输入" formControlName="name" required autocomplete="off">
       <mat-error *ngIf="eduInfoForm.controls['name'].hasError('required')">姓名不能为空</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="input-box">
       <mat-label>年龄</mat-label>
-      <input matInput type="number" placeholder="请输入" formControlName="age">
+      <input matInput type="number" placeholder="请输入" formControlName="age" autocomplete="off">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="input-box">
       <mat-label>成绩</mat-label>
-      <input matInput type="number" placeholder="请输入" formControlName="fraction">
+      <input matInput type="number" placeholder="请输入" formControlName="fraction" autocomplete="off">
     </mat-form-field>
   </form>
 </div>

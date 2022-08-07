@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table'
-import { of } from 'rxjs';
 
 import { ModalEditIndexdbDataComponent } from '../index';
 
@@ -20,7 +19,7 @@ class Student {
 })
 export class SkillIndexdbComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'age', 'fraction'];
+  displayedColumns: string[] = ['id', 'name', 'age', 'fraction', 'operation'];
 
   students = new MatTableDataSource<Student>([]);
 
@@ -29,6 +28,8 @@ export class SkillIndexdbComponent implements OnInit {
   openRequest: IDBOpenDBRequest;
   database: IDBDatabase;
   dbStore: IDBObjectStore;
+
+  searchKey = '';
 
   constructor(
     private matDialog: MatDialog,
@@ -44,13 +45,13 @@ export class SkillIndexdbComponent implements OnInit {
 
     // 版本号不一致时触发，包括新库刚建立时也会触发。
     this.openRequest.onupgradeneeded =  (event) => {
-      console.log('连接数升级中...', event);
+      console.log('数据库升级中...', event);
       this.database = this.openRequest.result;
 
       // 检查是否已经有person表缓存，如果没有,建person表
       if (!this.database.objectStoreNames.contains('person')) {
        // 建表，设置主键id，值必须是唯一的
-       const groupStore = this.database.createObjectStore('person', { keyPath: 'id' })
+       const groupStore = this.database.createObjectStore('person', { keyPath: 'id', autoIncrement: true })
 
        // 建立索引 unique唯一
        groupStore.createIndex('id', 'id', { unique: true })
@@ -71,8 +72,7 @@ export class SkillIndexdbComponent implements OnInit {
     }
   }
 
-  uodateTransaction() {
-    // 通过事务来完成上面代码中，写入数据需要新建一个事务。
+  updateTransaction() {
     // 新建时必须指定表格名称和操作模式（"只读"或"读写"）。
     // 新建事务以后，通过IDBTransaction.objectStore(name)方法，拿到 IDBObjectStore 对象
     this.dbStore = this.database.transaction('person', 'readwrite').objectStore('person');
@@ -80,12 +80,12 @@ export class SkillIndexdbComponent implements OnInit {
 
   getDataFromDataBase() {
     // 先创建事务
-    this.uodateTransaction();
+    this.updateTransaction();
 
     const request = this.dbStore.getAll();
 
     request.onsuccess = () => {
-      this.students.data = request.result;
+      this.students.data = request.result || [];
       console.log('读取数据库的数据', this.students.data);
     }
     
@@ -96,7 +96,7 @@ export class SkillIndexdbComponent implements OnInit {
 
   addDataToDataBase(data: Student) {
     // 先创建事务
-    this.uodateTransaction();
+    this.updateTransaction();
 
     const request = this.dbStore.add(data);
 
@@ -110,8 +110,62 @@ export class SkillIndexdbComponent implements OnInit {
     }
   }
 
+  deleteDataInDataBase(student: Student) {
+    // 先创建事务
+    this.updateTransaction();
+
+    const request = this.dbStore.delete(student.id);
+
+    request.onsuccess = (event) => {
+      console.log('删除数据成功');
+      this.getDataFromDataBase();
+    };
+  
+    request.onerror = (event) => {
+      console.log('删除数据失败');
+    }
+  }
+
+  updateDataInDataBase(student: Student) {
+    // 先创建事务
+    this.updateTransaction();
+
+    const request = this.dbStore.put(student);
+
+    request.onsuccess = (event) => {
+      console.log('更新数据成功');
+      this.getDataFromDataBase();
+    };
+  
+    request.onerror = (event) => {
+      console.log('更新数据失败');
+    }
+  }
+
+  getDataFromDataBaseBySearchKey() {
+    // 先创建事务
+    this.updateTransaction()
+
+    const Index = this.dbStore.index('name');
+    const request = Index.get(this.searchKey);
+
+    request.onsuccess = (event) => {
+      this.students.data = request.result ? [request.result] : [];
+      console.log('搜索成功', this.students.data);
+    };
+  
+    request.onerror = (event) => {
+      console.log('搜索失败');
+    }
+  }
+
   applyFilter(value: string) {
-    console.log(value)
+    this.searchKey = value.trim();
+    if (this.searchKey) {
+      this.getDataFromDataBaseBySearchKey();
+    } else {
+      this.getDataFromDataBase();
+    }
   }
 
   addData() {
@@ -119,10 +173,24 @@ export class SkillIndexdbComponent implements OnInit {
       width: '500px',
     }).afterClosed().subscribe((data) => {
       if (data) {
-        data.id = this.students.data.length + 1;
-        if (this.students.data.every(student => student.id !== data.id)) {
-          this.addDataToDataBase(data);
-        }
+        this.addDataToDataBase(data);
+      }
+    })
+  }
+
+  deleteTrigger(student: Student) {
+    this.deleteDataInDataBase(student);
+  }
+
+  ediTrigger(student: Student) {
+    this.matDialog.open(ModalEditIndexdbDataComponent, {
+      width: '500px',
+      data: {
+        student,
+      }
+    }).afterClosed().subscribe((data) => {
+      if (data) {
+        this.updateDataInDataBase(Object.assign(student, data));
       }
     })
   }

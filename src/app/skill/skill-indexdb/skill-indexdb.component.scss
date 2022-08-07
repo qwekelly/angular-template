@@ -9,13 +9,31 @@
   display: block;
 }
 
+.text-indent {
+  text-indent: 1.75rem;
+}
+
 .table-container {
 
   .table-header {
     margin-bottom: 16px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+
+    .search-input {
+      width: 400px;
+
+      &::ng-deep {
+        .mat-form-field-wrapper {
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    .demo-button {
+      margin-left: 16px;
+    }
   }
 
   .table-main {
@@ -24,5 +42,10 @@
     .table-main-thead-tr {
       background-color: #f5f5f5;
     }
+  }
+
+  .operate-box {
+    width: 200px;
+    text-align: center;
   }
 }

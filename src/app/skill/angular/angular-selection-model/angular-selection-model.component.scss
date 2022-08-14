@@ -1,0 +1,18 @@
+@import 'src/styles/index.scss';
+
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.link {
+  display: block;
+}
+
+.selection-container {
+  .checkbox-main {
+    .mat-checkbox {
+      margin: 16px 16px 16px 0;
+    }
+  }
+}

@@ -1,11 +1,23 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { SkillIndexdbComponent } from './skill-indexdb/skill-indexdb.component';
+import { 
+  SkillIndexdbComponent,
+  AngularSelectionModelComponent,
+} from './index';
 
 const routes: Routes = [
   {
     path: 'indexdb',
     component: SkillIndexdbComponent,
+  },
+  {
+    path: 'angular',
+    children: [
+      {
+        path: 'selection-model',
+        component: AngularSelectionModelComponent,
+      },
+    ],
   },
 ];
 

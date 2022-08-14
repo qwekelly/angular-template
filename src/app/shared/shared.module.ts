@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { SharedComponent } from './shared.component';
 
@@ -25,6 +27,8 @@ const MatComponents = [
   MatFormFieldModule,
   MatInputModule,
   MatDialogModule,
+  MatCheckboxModule,
+  MatSlideToggleModule,
 ];
 
 @NgModule({

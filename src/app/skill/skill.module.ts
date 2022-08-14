@@ -6,6 +6,7 @@ import { SkillRoutes } from './skill.routing';
 
 import {
   SkillIndexdbComponent,
+  AngularSelectionModelComponent,
   ModalEditIndexdbDataComponent,
 } from './index';
 
@@ -19,6 +20,7 @@ import {
   ],
   declarations: [
     SkillIndexdbComponent,
+    AngularSelectionModelComponent,
     ModalEditIndexdbDataComponent,
   ]
 })

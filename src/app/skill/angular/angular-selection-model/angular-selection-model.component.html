@@ -1,0 +1,71 @@
+<mat-card class="article">
+  <mat-card-title class="article-title">SelectionModel 介绍与使用</mat-card-title>
+
+  <section class="article-section">
+    <h3 class="article-section-title">前言</h3>
+    <p class="article-section-content text-indent">
+      具体使用可查阅官方对于SelectionModel的介绍与使用，本文只记录使用过程中个人的感悟和想法。
+    </p>
+  </section>
+
+  <section class="article-section">
+    <h3 class="article-section-title">主题</h3>
+    <p class="article-section-content text-indent">
+      1、SelectionModel可配置多选、单选模式，也能设置初始选定值，当单选模式下，如果一次性选择多个，控制台会报错。<br>
+      <b>2、_selection 维护的是Set的集合，所以选择器里面的一系列操作都是基于Set的原生属性方法进行的。</b><br>
+      3、提供changed Subject监听方式，当选择器的值发生改变时会触发。<br>
+      4、select() 方法内部获取参数的方式是“拓展运算符...”，所以当选择多项的时候，必须以拓展的方式传入。deselect()同理。<br>
+    </p>
+  </section>
+
+  <section class="article-section">
+    <h3 class="article-section-title">其他</h3>
+    <p class="article-section-content text-indent">
+      1、源码里面关于_unmarkAll的实现，是遍历_selection然后逐项执行_unmarkSelected的操作。
+        因为_selection是Set集合，为什么不直接调
+        <a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/clear">Set.prototype.clear()</a>
+        方法直接清空选择器的选择项？
+    </p>
+  </section>
+
+  <section class="article-section">
+    <h3 class="article-section-title">实现例子</h3>
+    <div class="selection-container">
+      <mat-slide-toggle color="primary" [checked]="multiple" (change)="onMultipleChange()">
+        模式： {{multiple ? '多选' : '单选'}}
+      </mat-slide-toggle>
+      <div class="checkbox-main">
+        <mat-checkbox color="primary" [checked]="allSelected" [disabled]="!multiple" (change)="onAllSelectedChange()">全选</mat-checkbox>
+      </div>
+      <div class="checkbox-main">
+        <mat-checkbox
+          *ngFor="let item of data"
+          color="primary"
+          [checked]="checkSelection.isSelected(item)"
+          (change)="checkSelection.toggle(item)"
+        >{{item.name}}</mat-checkbox>
+      </div>
+    </div>
+    <div>选择项：{{checkSelection.selected | json}}</div>
+  </section>
+  
+  <section class="article-section">
+    <h3 class="article-section-title">参考文档</h3>
+    <div class="article-section-content">
+      <div>
+        <a
+          mat-button
+          href="https://material.angular.cn/cdk/collections/overview"
+          target="_blank"
+        >material 关于collections的介绍</a>
+      </div>
+      <div>
+        <a
+          mat-button
+          href="https://github.com/ng-docs/components/blob/master/src/cdk/collections/selection-model.ts"
+          target="_blank"
+        >angular 关于selection-model的源码</a>
+      </div>
+    </div>
+  </section>
+</mat-card>

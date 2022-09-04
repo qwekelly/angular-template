@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { 
   SkillIndexdbComponent,
+  SkillWebApiComponent,
   AngularSelectionModelComponent,
 } from './index';
 
@@ -9,6 +10,10 @@ const routes: Routes = [
   {
     path: 'indexdb',
     component: SkillIndexdbComponent,
+  },
+  {
+    path: 'web-api',
+    component: SkillWebApiComponent,
   },
   {
     path: 'angular',

@@ -1,0 +1,25 @@
+@import 'src/styles/index.scss';
+
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.mat-card {
+  margin-top: 16px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.info-prototype {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+
+  .label {
+    flex-shrink: 0;
+    margin-right: 16px;
+  }
+}

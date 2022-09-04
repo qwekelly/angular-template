@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-title>Battery API</mat-card-title>
+  <mat-card-subtitle>获取设备电池电量信息</mat-card-subtitle>
+  <div class="info-prototype">充电状态：{{battery.charging}}</div>
+  <div class="info-prototype" *ngIf="battery.charging">预计充满还需：{{battery.chargingTime}}</div>
+  <div class="info-prototype">
+    <span class="label">电量：{{battery.level * 100 + '%'}}</span>
+    <mat-progress-bar mode="determinate" [value]="battery.level * 100"></mat-progress-bar>
+  </div>
+  <div class="info-prototype" *ngIf="!battery.charging">预计剩余时间：{{changeSecondsToBaseTime(battery.dischargingTime)}}</div>
+</mat-card>
+

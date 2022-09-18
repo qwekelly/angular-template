@@ -9,6 +9,7 @@ import {
   SkillWebApiComponent,
   AngularSelectionModelComponent,
   ModalEditIndexdbDataComponent,
+  TestBroadcastChannelComponent,
 } from './index';
 
 @NgModule({
@@ -24,6 +25,7 @@ import {
     SkillWebApiComponent,
     AngularSelectionModelComponent,
     ModalEditIndexdbDataComponent,
+    TestBroadcastChannelComponent,
   ]
 })
 export class SkillModule { }

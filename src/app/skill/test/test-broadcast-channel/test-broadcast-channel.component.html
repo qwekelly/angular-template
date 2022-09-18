@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-title>监听值</mat-card-title>
+  <div class="info-prototype"> 来源于父页面： {{value}} </div>
+  <div class="info-prototype">
+    <mat-form-field class="input-box" appearance="outline">
+      <mat-label>请输入回传信息</mat-label>
+      <input matInput placeholder="请输入回传信息" #input autocomplete="off">
+    </mat-form-field>
+    <button class="input-btn" mat-raised-button color="primary" (click)="onSendMeeage(input.value)">发送</button>
+  </div>
+</mat-card>

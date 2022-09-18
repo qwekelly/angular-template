@@ -4,6 +4,7 @@ import {
   SkillIndexdbComponent,
   SkillWebApiComponent,
   AngularSelectionModelComponent,
+  TestBroadcastChannelComponent,
 } from './index';
 
 const routes: Routes = [
@@ -21,6 +22,15 @@ const routes: Routes = [
       {
         path: 'selection-model',
         component: AngularSelectionModelComponent,
+      },
+    ],
+  },
+  {
+    path: 'test',
+    children: [
+      {
+        path: 'broadcast-channel',
+        component: TestBroadcastChannelComponent,
       },
     ],
   },

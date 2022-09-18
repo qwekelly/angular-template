@@ -10,3 +10,21 @@
   <div class="info-prototype" *ngIf="!battery.charging">预计剩余时间：{{changeSecondsToBaseTime(battery.dischargingTime)}}</div>
 </mat-card>
 
+<mat-card>
+  <mat-card-title>Broadcast Channel API</mat-card-title>
+  <mat-card-subtitle>Broadcast Channel API 可以实现同 源 下浏览器不同窗口，Tab 页，frame 或者 iframe 下的 浏览器上下文 (通常是同一个网站下不同的页面) 之间的简单通讯。</mat-card-subtitle>
+  <div class="info-prototype">
+    子页面信息：{{ broadcastChannelValue }}
+  </div>
+  <div class="info-prototype">
+    <mat-form-field class="input-box" appearance="outline">
+      <mat-label>请输入通讯信息</mat-label>
+      <input matInput placeholder="请输入通讯信息" #input autocomplete="off">
+    </mat-form-field>
+    <button class="input-btn" mat-raised-button color="primary" (click)="onSendMeeage(input.value)">发送</button>
+  </div>
+  <mat-card-actions align="end">
+    <a mat-raised-button [routerLink]="['../test', 'broadcast-channel']" target="_blank">测试页面</a>
+    <a mat-raised-button href="https://developer.mozilla.org/zh-CN/docs/Web/API/Broadcast_Channel_API" target="_blank">标准文档来源</a>
+  </mat-card-actions>
+</mat-card>

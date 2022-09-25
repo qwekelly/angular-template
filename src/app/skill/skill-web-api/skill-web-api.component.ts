@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { CustomBatteryManager } from 'utils/global.model';
 
@@ -8,7 +9,8 @@ import { CustomBatteryManager } from 'utils/global.model';
   templateUrl: './skill-web-api.component.html',
   styleUrls: ['./skill-web-api.component.scss'],
 })
-export class SkillWebApiComponent implements OnInit, OnDestroy {
+export class SkillWebApiComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('iframe') iframe: ElementRef<HTMLIFrameElement>;
 
   battery: CustomBatteryManager = {};
 
@@ -16,16 +18,35 @@ export class SkillWebApiComponent implements OnInit, OnDestroy {
 
   broadcastChannelValue: string;
 
-  constructor() { }
+  channel: MessageChannel;
+
+  channelPort1: MessagePort;
+
+  channelPort2: MessagePort;
+
+  channelIframeUrl: SafeResourceUrl;
+
+  constructor(
+    private domSanitizer: DomSanitizer,
+  ) {
+    
+  }
 
   ngOnInit() {
+    this.channelIframeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl('/skill/test/broadcast-channel');
     this.getBattery();
     this.initBroadcastChannel();
+  }
+
+  ngAfterViewInit() {
+    this.iframe && this.initChannel();
   }
 
   ngOnDestroy() {
     this.battery && this.battery.removeAllListeners();
     this.broadcastChannel && this.broadcastChannel.close();
+    this.iframe && this.iframe.nativeElement.removeAllListeners();
+    this.channelPort1 && this.channelPort1.removeAllListeners();
   }
 
   getBattery() {
@@ -57,5 +78,31 @@ export class SkillWebApiComponent implements OnInit, OnDestroy {
 
   onSendMeeage(value: string) {
     value && this.broadcastChannel.postMessage(value);
+  }
+
+  initChannel() {
+    this.channel = new MessageChannel();
+    this.channelPort1 = this.channel.port1;
+    this.channelPort2 = this.channel.port2;
+
+    this.iframe.nativeElement.addEventListener('load', () => {
+      this.iframe.nativeElement.contentWindow.postMessage({
+        type: 'channel',
+        isInit: true,
+        data: 'Hellow',
+      }, '*', [this.channelPort2]);
+  
+      this.channelPort1.onmessage = (event) => {
+        console.log('监听返回', event);
+      };
+    });
+  }
+
+  onSendChannelMeeage(value: string) {
+    value && this.channelPort1 && this.channelPort1.postMessage({
+      type: 'channel',
+      isInit: false,
+      data: value,
+    });
   }
 }

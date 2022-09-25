@@ -28,3 +28,32 @@
     <a mat-raised-button href="https://developer.mozilla.org/zh-CN/docs/Web/API/Broadcast_Channel_API" target="_blank">标准文档来源</a>
   </mat-card-actions>
 </mat-card>
+
+<mat-card>
+  <mat-card-title>Channel Messaging API</mat-card-title>
+  <mat-card-subtitle>
+    Channel Messaging API 允许两个不同的脚本运行在同一个文档的不同浏览器上下文
+    （比如两个 iframe，或者文档主体和一个 iframe，使用 SharedWorker 的两个文档，或者两个 worker）
+    来直接通讯，在每端使用一个端口（port）通过双向频道（channel）向彼此传递消息。
+  </mat-card-subtitle>
+  <div class="info-prototype">
+    <mat-form-field class="input-box" appearance="outline">
+      <mat-label>请输入通讯信息</mat-label>
+      <input matInput placeholder="请输入通讯信息" #channelInput autocomplete="off">
+    </mat-form-field>
+    <button class="input-btn" mat-raised-button color="primary" (click)="onSendChannelMeeage(channelInput.value)">发送</button>
+  </div>
+  <div class="info-prototype">
+    子页面信息：
+  </div>
+  <div class="info-prototype">
+    <iframe
+      #iframe
+      class="custom-iframe"
+      [src]="channelIframeUrl"
+    ></iframe>
+  </div>
+  <mat-card-actions align="end">
+    <a mat-raised-button href="https://developer.mozilla.org/zh-CN/docs/Web/API/Broadcast_Channel_API" target="_blank">标准文档来源</a>
+  </mat-card-actions>
+</mat-card>

@@ -4,11 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "prebuild": "npm run hash",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "read-markdown-file": "node scripts/read-markdown-file"
+    "read-markdown-file": "node scripts/read-markdown-file",
+    "hash": "node scripts/git-version-gen"
   },
   "private": true,
   "dependencies": {

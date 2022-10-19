@@ -14,3 +14,7 @@ interface FileSystemFileHandle {
     close: () => void;
   }
 }
+
+interface Date {
+  Format (fmt: string): string
+}

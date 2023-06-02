@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -11,9 +11,11 @@ import { BaseService } from './services/base.service';
 
 import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
+// import { UIAvatar, UICard } from '../assets/disk/web-ui.min.js';
+
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
    ],
   imports: [
@@ -24,10 +26,12 @@ import { SharedModule } from './shared/shared.module';
     LayoutModule,
     SharedModule,
   ],
+  // entryComponents: [UIAvatar, UICard],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [
     ApiService,
     BaseService,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

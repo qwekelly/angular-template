@@ -1,8 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { 
+import {
   SkillIndexdbComponent,
   SkillWebApiComponent,
+  SkillWebComponentComponent,
   AngularSelectionModelComponent,
   TestBroadcastChannelComponent,
 } from './index';
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'web-api',
     component: SkillWebApiComponent,
+  },
+  {
+    path: 'web-component',
+    component: SkillWebComponentComponent,
   },
   {
     path: 'angular',

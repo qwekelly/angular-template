@@ -11,6 +11,7 @@ import {
   SkillWebComponentComponent,
   SkillIntersectionComponent,
   AngularSelectionModelComponent,
+  AngularNestedFormsComponent,
   ModalEditIndexdbDataComponent,
   TestBroadcastChannelComponent,
 } from './index';
@@ -29,6 +30,7 @@ import {
     SkillWebComponentComponent,
     SkillIntersectionComponent,
     AngularSelectionModelComponent,
+    AngularNestedFormsComponent,
     ModalEditIndexdbDataComponent,
     TestBroadcastChannelComponent,
   ],

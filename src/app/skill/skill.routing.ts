@@ -6,6 +6,7 @@ import {
   SkillWebComponentComponent,
   SkillIntersectionComponent,
   AngularSelectionModelComponent,
+  AngularNestedFormsComponent,
   TestBroadcastChannelComponent,
 } from './index';
 
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'selection-model',
         component: AngularSelectionModelComponent,
+      },
+      {
+        path: 'nested-forms',
+        component: AngularNestedFormsComponent,
       },
     ],
   },

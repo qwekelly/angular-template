@@ -1,0 +1,23 @@
+@import 'src/styles/index.scss';
+
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.mat-card {
+  margin-top: 16px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.footer {
+  margin: 20px 0;
+
+  &-text {
+    text-align: center;
+    color: seagreen;
+  }
+}

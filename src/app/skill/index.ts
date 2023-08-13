@@ -1,6 +1,7 @@
 export * from './skill-indexdb/skill-indexdb.component';
 export * from './skill-web-api/skill-web-api.component';
 export * from './skill-web-component/skill-web-component.component';
+export * from './skill-intersection/skill-intersection.component';
 
 export * from './angular/angular-selection-model/angular-selection-model.component';
 

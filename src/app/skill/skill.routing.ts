@@ -4,6 +4,7 @@ import {
   SkillIndexdbComponent,
   SkillWebApiComponent,
   SkillWebComponentComponent,
+  SkillIntersectionComponent,
   AngularSelectionModelComponent,
   TestBroadcastChannelComponent,
 } from './index';
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'web-component',
     component: SkillWebComponentComponent,
+  },
+  {
+    path: 'intersection',
+    component: SkillIntersectionComponent,
   },
   {
     path: 'angular',

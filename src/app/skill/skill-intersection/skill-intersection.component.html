@@ -1,0 +1,44 @@
+<mat-card *ngFor="let data of tables; let index = index">
+  <mat-card-header>
+
+    <img mat-card-avatar class="avatar" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-title>{{data.name + (index + 1)}}</mat-card-title>
+    <mat-card-subtitle>{{data.desc}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting.
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<div *ngIf="tables.length" class="footer" #footer>
+  <mat-progress-bar
+    *ngIf="!finish"
+    mode="buffer"
+    class="footer-loading"
+  ></mat-progress-bar>
+  <div *ngIf="finish" class="footer-text">加载完成</div>
+</div>
+
+<section *ngIf="tables.length" class="article-section">
+  <h3 class="article-section-title">参考文档</h3>
+  <p class="article-section-content">
+    <a class="link" target="_blank">https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API</a>
+  </p>
+</section>
+
+

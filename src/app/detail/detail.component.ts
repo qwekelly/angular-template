@@ -53,6 +53,10 @@ export class DetailComponent implements OnInit {
       if (!query['fileName']) {
         this.addQueryParamsToRouter()
       }
+
+      if (!this.fileNameList.includes(this.activeName)) {
+        this.fileNameList.push(this.activeName)
+      }
     })
   }
 
